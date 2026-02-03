@@ -1,0 +1,35 @@
+name: microplastic-${CI_ENVIRONMENT_SLUG}
+
+services:
+  frontend: 
+    image: ${CI_REGISTRY_IMAGE}/frontend:v${VERSION_NUMBER}
+    expose:
+      - 3000
+    environment:
+      - VITE_API_URL=${BACKEND_URL}
+    restart: unless-stopped
+    networks:
+      - traefik
+    labels:
+      - traefik.enable=true
+
+  backend:
+    image: ${CI_REGISTRY_IMAGE}/backend:v${VERSION_NUMBER}
+    expose:
+      - 3001
+    restart: unless-stopped
+    networks:
+      - traefik
+    volumes:
+      - ./Backend/images:/app/images
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    labels:
+      - traefik.enable=true
+
+networks:
+  default:
+    name: microplastic-${CI_ENVIRONMENT_SLUG}
+    external: true
+  traefik:
+    external: true

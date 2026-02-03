@@ -1,0 +1,17 @@
+services:
+  web-app:               
+    build: ./Frontend             
+    ports:
+      - "3000:3000"        
+    restart: always      
+
+  backend:
+    build: ./Backend
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./Backend/images:/app/images
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: always
+    

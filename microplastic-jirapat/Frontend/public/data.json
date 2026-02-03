@@ -1,0 +1,8 @@
+[
+  { "id": 1, "type": "PET", "count": 45 },
+  { "id": 2, "type": "HDPE", "count": 32 },
+  { "id": 3, "type": "PVC", "count": 18 },
+  { "id": 4, "type": "LDPE", "count": 25 },
+  { "id": 5, "type": "PP", "count": 38 },
+  { "id": 6, "type": "PS", "count": 12 }
+]
